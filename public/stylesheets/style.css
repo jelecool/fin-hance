@@ -12,8 +12,13 @@ a {
 }
 
 #metric-card {
-  height: 2.5em;
-  width: 10em;
+  height: auto;
+  width: auto;
+  margin: 0.5em;
+  padding: 0.25em
+}
+
+.body-card {
   margin: 0.5em;
   padding: 0.25em
 }

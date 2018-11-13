@@ -1,55 +1,52 @@
 extends layout
 
 block content
-  .container-fluid  
-    .row  
-      .column
-        .card.py-3
-          h1.card-title VTI Interactive
-          h3 Invest with a margin of safety, emphasis on safety
-          .card-body
-            h3 Based on these metrics, the VTI for #{ticker} is #{vti} 
-              .container-fluid.pt-4
-                .row
-                  .col
-                    .card#metric-card
-                      h4 PS
-                      p #{ps}
-                  .col
-                    .card#metric-card
-                      h4 PE
-                      p #{pe}
-                  .col
-                    .card#metric-card
-                      h4 PC
-                      p #{pc}
-                .row
-                  .col
-                    .card#metric-card
-                      h4 PB
-                      p #{pb}
-                  .col
-                    .card#metric-card
-                      h4 DE
-                      p #{de}
-                  .col
-                    .card#metric-card
-                      h4 EG
-                      p #{eg}
-                .row
-                  .col
-                    .card#metric-card
-                      h4 Payout
-                      p #{pr}
-                  .col
-                    .card#metric-card
-                      h4 Yield
-                      p #{y}
-                  .col
-                    .card#metric-card
-                      h4 EPS
-                      p #{eps}
-            
-                h3 And this share price: #{shareprice}
-                a(href="/")
-                  button.btn.btn-warning Try again
+  .container-fluid 
+    .card.body-card
+      h1 VTI Interactive
+      h3 Invest with a margin of safety, emphasis on safety
+      .card-body
+        h3 #{ticker}
+        h4 #{shareprice} => VTI: #{vti}
+          .container-fluid.py-4
+            .row
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Price to Sales
+                  p #{ps}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Price to Earnings
+                  p #{pe}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Price to Cash
+                  p #{pc}
+            .row
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Price to Book
+                  p #{pb}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Debt to Equity
+                  p #{de}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Earnings Growth
+                  p #{eg}
+            .row
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Payout Ratio
+                  p #{pr}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Dividend Yield
+                  p #{y}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 EPS
+                  p #{eps}
+          a(href="/")
+            button.btn.btn-warning Try again
