@@ -1,11 +1,17 @@
 var createError = require('http-errors');
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 var indexRouter = require('./routes/index');
 var resultRouter = require('./routes/calculator');
+var signupRouter = require('./routes/signup');
+var signinRouter = require('./routes/signin');
+var protectedRouter = require('./routes/protected');
 
 var app = express();
 
@@ -13,14 +19,32 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+//Connecte le client mongoose à la bonne base de données
+mongoose.connect('mongodb://user:soccer49@ds041178.mlab.com:41178/fin-hance', { useNewUrlParser: true });
+
+//enregistre la base de donnédans une variable facilement accessible
+var db = mongoose.connection;
+
+//Facilite le "error handling" des bases de donnnées
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  // Signifie à la console que la connection s'est bien effectuée
+  console.log("connected");
+});
+
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: "123456"}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/result', resultRouter);
+app.use('/signup', signupRouter);
+app.use('/signin', signinRouter);
+app.use('/protected', protectedRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
