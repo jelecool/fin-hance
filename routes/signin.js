@@ -19,7 +19,7 @@ router.post('/', function (req, res, next) {
           const token = jwt.sign({ user: user }, toString(Math.random));
           req.session.token = token;
           //res.json({token : token});
-          res.redirect('/protected',{id:req.session.userId});
+          res.redirect('/protected');
           //res.redirect('/profile');
         }
       });

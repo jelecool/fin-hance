@@ -10,10 +10,34 @@ function toPercent(num) {
 }
 
 
-/* GET users listing. */
-router.post('/', function(req, res, next) {
+function ensureToken(req, res, next) {
+  const bearerHeader = req.headers["authorization"];
+  const bearerheader = req.session.token;
+  //check if bearer is undefined
+  if (typeof bearerHeader !== 'undefined') {
+    //get access token from string
+    const bearer = bearerHeader.split(" ");
+    const bearerToken = bearer[1];
+    req.token = bearerToken;
+    next();
+  } else if (typeof bearerheader !== 'undefined') {
+      //get access token from string
+      const bearerToken = bearerheader;
+      req.token = bearerToken;
+      next();
+
+  } else {
+    res.render('/signin',{message: "NOT AUTHORIZED!"});
+  }
+}
+ 
+/* GET home page. */
+router.get('/', ensureToken, function(req, res, next){
+  var user = req.session.user;
+  var token = req.session.token;
   var call = async () => {
     var position = await finance(req.body.ticker);
+    console.log(position);
     await res.render('result', {
       vti: position.vti,
       ticker: req.body.ticker,

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+
 function ensureToken(req, res, next) {
   const bearerHeader = req.headers["authorization"];
   const bearerheader = req.session.token;
@@ -18,7 +19,7 @@ function ensureToken(req, res, next) {
       next();
 
   } else {
-    res.render('/signup',{message: "NOT AUTHORIZED!"});
+    res.render('/signin',{message: "NOT AUTHORIZED!"});
   }
 }
  
@@ -26,7 +27,7 @@ function ensureToken(req, res, next) {
 router.get('/', ensureToken, function(req, res, next){
   var user = req.session.user;
   var token = req.session.token;
-  return res.render('protected', {id: req.session.user.id});
+  return res.render('protected', { name: req.session.user.username });
 });
 
 module.exports = router;

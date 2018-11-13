@@ -3,8 +3,13 @@ extends layout
 block content
   .card.py-3
     .card-title
-      h1 Hidden
-      h2 Very Private -> ID: #{id}
+      h1 Watchlist
+      h2 See your past VTI calculations
     .card-body
-      p MENNNNNN
+      p Hi, #{name}, I am happy to see you!
+      form(action="/login_result",method="POST").form-control
+        h3 Ticker Symbol
+        .form-group
+          input(name="ticker",type="text", placeholder="ex.: GOOGL")
+        button(type="submit").btn.btn-warning Calculate Valuation
       

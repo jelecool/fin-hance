@@ -12,6 +12,8 @@ var resultRouter = require('./routes/calculator');
 var signupRouter = require('./routes/signup');
 var signinRouter = require('./routes/signin');
 var protectedRouter = require('./routes/protected');
+var login_protectedRouter = require('./routes/login_protected');
+var login_resultRouter = require('./routes/login_result');
 
 var app = express();
 
@@ -45,6 +47,8 @@ app.use('/result', resultRouter);
 app.use('/signup', signupRouter);
 app.use('/signin', signinRouter);
 app.use('/protected', protectedRouter);
+app.use('/login_protected', login_protectedRouter);
+app.use('/login_result', login_resultRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
