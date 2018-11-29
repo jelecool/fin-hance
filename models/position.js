@@ -1,55 +1,86 @@
 //Instancie les dépendances du modele
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var User = require('./users');
 
 
 //Définit la structure des données pour le USER
 var PositionSchema = new mongoose.Schema({
-    ticker: {
-      type: String,
-      unique: true,
-      required: true,
-      trim: true
+    id: {
+      type: String
     },
     vti: {
-      type: Number,
-      required: true
+      type: Number
     },
     pe: {
-      type: Number,
-      required: true
+      type: Number
     },
     pc: {
-      type: Number,
-      required: true
+      type: Number
     },
     pb: {
-      type: Number,
-      required: true
+      type: Number
     },
     ps: {
-      type: Number,
-      required: true
+      type: Number
     },
     eg: {
-      type: Number,
-      required: true
+      type: String
     },
     de: {
-      type: Number,
-      required: true
+      type: Number
     },
     yield: {
-      type: Number,
-      required: true
+      type: Number
     },
     payout: {
-      type: Number,
-      required: true
-    }
+      type: Number
+    },
+    earnings: {
+    type: Number
+    },
+    x1: {
+      type: Number
+    },
+    x2: {
+      type: Number
+    },
+    x3: {
+      type: Number
+    },
+    x4: {
+      type: Number
+    },
+    x5: {
+      type: Number
+    },
+    x6: {
+      type: Number
+    },
+    x7: {
+      type: Number
+    },
+    y: {
+      type: String
+    },
+    pr: {
+      type: String
+    },
+    shareprice: {
+      type: Number
+    },
+    ticker: {
+      type: String
+    },
+    author: 
+    { 
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }, 
+  
     
   });
 
-  
-  
+
   var Position = mongoose.model('Position', PositionSchema);
   module.exports = Position;

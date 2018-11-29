@@ -18,6 +18,7 @@ router.post('/', function (req, res, next) {
           req.session.user = user;
           const token = jwt.sign({ user: user }, toString(Math.random));
           req.session.token = token;
+          console.log(`User ID : ${req.session.userId}`)
           //res.json({token : token});
           res.redirect('/protected');
           //res.redirect('/profile');

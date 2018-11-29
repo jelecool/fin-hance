@@ -25,8 +25,6 @@ function ensureToken(req, res, next) {
  
 /* GET home page. */
 router.get('/', ensureToken, function(req, res, next){
-  var user = req.session.user;
-  var token = req.session.token;
   return res.render('protected', { name: req.session.user.username });
 });
 

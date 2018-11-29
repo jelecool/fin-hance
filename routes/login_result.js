@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var finance = require('@riouxjean/test');
 
-var Position = require('../models/position');
 
 function toPercent(num) {
   var percent_c = num * 100;
@@ -30,16 +29,10 @@ router.post('/', function(req, res, next) {
       pr: toPercent(await position.payout),
       y: toPercent(await position.yield)
     }
-    Position.create(position_data, function (error, position) {
-      if (error) {
-        return next(error);
-      } else {
-        req.session.position = position;
-        res.render('result', position_data);
-      }
-    });
-  call();
+    req.session.position = position;
+    res.render('result', position_data);
   }
+  call();
 });
 
 module.exports = router;
