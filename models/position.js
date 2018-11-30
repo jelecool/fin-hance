@@ -76,10 +76,14 @@ var PositionSchema = new mongoose.Schema({
     { 
       type: Schema.Types.ObjectId,
       ref: 'User'
-    }, 
+    },
+    date: {
+      type: String
+    } 
   
     
   });
+
 
 
   var Position = mongoose.model('Position', PositionSchema);

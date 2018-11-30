@@ -14,12 +14,11 @@ router.post('/', function (req, res, next) {
           err.status = 401;
           return next(err);
         } else {
-          req.session.userId = user._id;
           req.session.user = user;
+          req.session.userId = user._id;
           const token = jwt.sign({ user: user }, toString(Math.random));
           req.session.token = token;
-          console.log(`User ID : ${req.session.userId}`)
-          //res.json({token : token});
+          console.log(`Signin: L: 21 ${req.session.userId} `);
           res.redirect('/protected');
           //res.redirect('/profile');
         }

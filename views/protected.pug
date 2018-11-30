@@ -3,8 +3,7 @@ extends layout
 block content
   .card.py-3
     .card-title
-      h1 Watchlist
-      h2 See your past VTI calculations
+      h1 Logged In
     .card-body
       p Hi, #{name}, I am happy to see you!
       form(action="/login_result",method="POST").form-control
@@ -12,4 +11,29 @@ block content
         .form-group
           input(name="ticker",type="text", placeholder="ex.: GOOGL")
         button(type="submit").btn.btn-warning Calculate Valuation
+  .card.py-3
+    .card-title
+      h1 Past VTI
+    .card-body
+      table.table.table-dark
+        thead
+          tr
+            th Ticker
+            th VTI
+            th Shareprice
+            th Price/Earnings
+            th Price/Cash
+            th Price/Book
+            th Date Updated
+        tbody
+        if positions
+          each v in positions
+            tr
+              td #{v.ticker}
+              td #{v.vti}
+              td #{v.shareprice}
+              td #{v.pe}
+              td #{v.pc}
+              td #{v.pb}
+              td #{v.date} 
       

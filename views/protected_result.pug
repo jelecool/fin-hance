@@ -1,0 +1,77 @@
+extends layout
+
+block content
+  .container-fluid 
+    .card.body-card
+      h1 VTI Interactive
+      h3 Invest with a margin of safety, emphasis on safety
+      .card-body
+        h3 #{position.ticker}
+        h4 #{position.shareprice} => VTI: #{vti}
+          .container-fluid.py-4
+            .row
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Price to Sales
+                  p #{position.ps}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Price to Earnings
+                  p #{position.pe}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Price to Cash
+                  p #{position.pc}
+            .row
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Price to Book
+                  p #{position.pb}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Debt to Equity
+                  p #{position.de}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Earnings Growth
+                  p #{position.eg}
+            .row
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Payout Ratio
+                  p #{position.pr}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 Dividend Yield
+                  p #{position.y}
+              .col-lg-4.col-md-4.col-sm-12
+                .card#metric-card
+                  h5 EPS
+                  p #{position.eps}
+          a(href="/protected")
+            button.btn.btn-warning Try again
+    .card.py-3
+    .card-title
+      h1 Past VTI
+    .card-body
+      table.table.table-dark
+        thead
+          tr
+            th Ticker
+            th VTI
+            th Shareprice
+            th Price/Earnings
+            th Price/Cash
+            th Price/Book
+            th Date Updated
+        tbody
+        if positions
+          each v in positions
+            tr
+              td #{v.ticker}
+              td #{v.vti}
+              td #{v.shareprice}
+              td #{v.pe}
+              td #{v.pc}
+              td #{v.pb}
+              td #{v.date} 

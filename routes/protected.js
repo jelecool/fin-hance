@@ -1,10 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var Position = require('../models/position');
+
+var bearerHeader;
 
 
 function ensureToken(req, res, next) {
-  const bearerHeader = req.headers["authorization"];
-  const bearerheader = req.session.token;
+  if (req.headers["authorization"]) {
+    bearerHeader = req.headers["authorization"];
+  } 
+  
+  if (req.session.token) {
+    bearerheader = req.session.token;
+  }
   //check if bearer is undefined
   if (typeof bearerHeader !== 'undefined') {
     //get access token from string
@@ -19,13 +27,20 @@ function ensureToken(req, res, next) {
       next();
 
   } else {
-    res.render('/signin',{message: "NOT AUTHORIZED!"});
+    res.render('signin',{message: "NOT AUTHORIZED!"});
   }
 }
  
 /* GET home page. */
 router.get('/', ensureToken, function(req, res, next){
-  return res.render('protected', { name: req.session.user.username });
+  console.log(`ID Stored in SESSION : ${req.session.user._id}`)
+  Position.find({author: req.session.user._id}, function(err,docs){
+    if (err) {
+      return err;
+    }
+    //console.log(docs);
+    return res.render('protected', { name: req.session.user.username, positions: docs });
+  })
 });
 
 module.exports = router;
