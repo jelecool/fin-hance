@@ -1,14 +1,14 @@
 extends layout
 
 block content
-  .card.py-3
-    .card-title
-      h1 VTI Interactive
-      h2 Invest with a margin of safety, emphasis on safety
-    .card-body
-      form(action="/result",method="POST").form-control
+  .jumbotron.py-4
+    h1.display-4 VTI Interactive
+    p.lead
+      form(action="/result",method="POST")
         h3 Ticker Symbol
         .form-group
           input(name="ticker",type="text", placeholder="ex.: GOOGL")
-        button(type="submit").btn.btn-warning Calculate Valuation
-      
+          button(type="submit").btn.btn-warning Calculate Valuation
+        include includes/signinbtn.pug
+    hr.my-4
+    h3 Invest with a margin of safety, emphasis on safety
